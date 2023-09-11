@@ -23,10 +23,10 @@ jobs:
         id: Login-ecr
         uses: aws-actions/amazon-ecr-login@v1
   
-      - name: Build, tag, and push image to Amazon ECR
-          env:
-            ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-            ECR_REPOSITORY: dk-securecodebox
-          run: |
-            chmod +x push_images_to_ecr.sh
-            ./scripts.sh
+      - name: Run Docker image push script      
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: dk-securecodebox
+        run: |
+          chmod +x push_images_to_ecr.sh
+          ./scripts.sh
