@@ -1,4 +1,4 @@
-# Docker Image Push to Amazon ECR with GitHub Actions
+# Docker hub to ECR with GitHub Actions
 
 Automate Docker image pushes from Docker Hub to Amazon Elastic Container Registry (ECR) using GitHub Actions.
 
