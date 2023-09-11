@@ -31,7 +31,7 @@ jobs:
         id: docker-build
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: cloudevopsguru/demo1
+          ECR_REPOSITORY: dk-securecodebox
         run: |
           chmod +x scripts.sh
           ./scripts.sh
