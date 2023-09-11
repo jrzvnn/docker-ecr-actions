@@ -2,17 +2,25 @@
 
 # Define the list of images to pull and push
 IMAGES=(
-    securecodebox/engine
-    securecodebox/nmap
-    securecodebox/zap
-    securecodebox/nikto
-    securecodebox/sslyze
-    securecodebox/bodgeit
-    securecodebox/amass
-    securecodebox/arachni
-    securecodebox/ssh
-    securecodebox/lurcher
-    securecodebox/hook-teams-notification
+    # securecodebox/engine
+    # securecodebox/nmap
+    # securecodebox/zap
+    # securecodebox/nikto
+    # securecodebox/sslyze
+    # securecodebox/bodgeit
+    # securecodebox/amass
+    # securecodebox/arachni
+    # securecodebox/ssh
+    # securecodebox/lurcher
+    # securecodebox/hook-teams-notification
+    securecodebox/scanner-gitleaks
+    securecodebox/parser-ssh-scan
+    securecodebox/hook-cascading-scans
+    securecodebox/scanner-nmap
+    securecodebox/scanner-test-scan
+    securecodebox/scanner-kube-hunter
+    securecodebox/hook-notification
+    securecodebox/hook-generic-webhook
 )
 
 AWS_REGION="us-east-1"
