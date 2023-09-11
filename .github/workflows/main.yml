@@ -2,13 +2,12 @@ name: Docker Image CI/CD to ECR
 
 on:
   push:
-    branches:
-      - main  # Adjust the branch name as needed
+    branches: [ main ]  # Adjust the branch name as needed
 
 jobs:
-  build-and-push-images:
+  build-and-push:
+    name: Build and push to ECR
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -19,6 +18,10 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+      
+      - name: Login to Amazon ECR
+        id: Login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
       - name: Run Docker image push script
         run: |
