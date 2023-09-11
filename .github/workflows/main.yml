@@ -2,36 +2,34 @@ name: Docker Image CI/CD to ECR
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]  # Adjust the branch name as needed
 
 jobs:
-  build:
-    name: Build Image
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
+      - name: Checkout source
         uses: actions/checkout@v3
-
+        
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
         with:
           mask-password: 'true'
-
-      - name: Build & Push Docker image
-        id: docker-build
+          
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: cloudevopsguru/demo1
+          IMAGE_TAG: latest
+          REPOSITORY: dk-securecodebox
         run: |
-          chmod +x push_images_to_ecr.sh
+          chmod +x scripts.sh
           ./scripts.sh
+
